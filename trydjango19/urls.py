@@ -24,6 +24,4 @@ urlpatterns = [
     url(r'^posts/', include('posts.urls', namespace='posts')),
 ]
 if settings.DEBUG:
-    urlpatterns = [
-                      # ... the rest of your URLconf goes here ...
-                  ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
