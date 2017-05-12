@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block head_title %}Try Django 1.9{% endblock %}</title>
+</head>
+<body>
+{% include 'messages_display.html'%}
+<div class="conteiner">
+    {%block content %}
+    {% endblock content %}
+</div>
+</body>
+</html>
