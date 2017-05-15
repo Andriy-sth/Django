@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db.models.signals import pre_save
 from django.utils.text import slugify
@@ -12,6 +13,7 @@ def upload_location(instance, filename):
 
 
 class Post(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=1)
     title = models.CharField(max_length=50)
     slug = models.SlugField(unique=True)
     image = models.ImageField(upload_to=upload_location,
@@ -20,6 +22,8 @@ class Post(models.Model):
     width_field = models.IntegerField(default=0)
     height_field = models.IntegerField(default=0)
     content = models.TextField()
+    draft = models.BooleanField(default=False)
+    publish = models.DateTimeField(auto_now=False, auto_now_add=False)
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)
 
